@@ -6,7 +6,7 @@ public class Crystal_Target : MonoBehaviour
 {
     public Animator anim;
 
-    bool isHit;
+    public bool isHit;
 
     private void Start()
     {

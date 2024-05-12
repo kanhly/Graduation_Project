@@ -43,6 +43,9 @@ public class MouseController : MonoSingleton<MouseController>
 
         prePcPos = pc.transform.position;
         isCoroRun = false;
+
+        //´ýÐÞ¸Ä
+        virtualCursor = (RectTransform)UIController.Instance.gameObject.transform.Find("Cursor");
     }
 
     void Update()

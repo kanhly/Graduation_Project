@@ -18,10 +18,12 @@ public class Crystal : MonoBehaviour
     Vector2 endPos;
     bool isCoroRun=false;
     Vector2 PrePos;
+    Vector2 bulletPrePos;
 
     private void Start()
     {
         isFire = true;
+        bulletPrePos = bullet.transform.position;
     }
 
     private void Update()
@@ -31,6 +33,9 @@ public class Crystal : MonoBehaviour
             Sleep();
         }else if (!isCoroRun)
         {
+            line.gameObject.SetActive(true);
+            bullet.SetActive(true);
+
             StartCoroutine(Lasing());
 
         }
@@ -39,6 +44,7 @@ public class Crystal : MonoBehaviour
     public void Sleep()
     {
         line.gameObject.SetActive(false);
+        bullet.transform.position = bulletPrePos;
         StopCoroutine(Lasing());
         bullet.SetActive(false);
     }

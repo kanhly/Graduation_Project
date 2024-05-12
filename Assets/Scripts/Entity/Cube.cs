@@ -64,6 +64,7 @@ public class Cube : Entity
 
     public void OnFire()
     {
+        transform.Find("FlyCol").gameObject.SetActive(true);
         rb.velocity = flySpeed * MouseController.Instance.mousePosRTCenter.normalized * Time.deltaTime;
         //Debug.Log(MouseController.Instance.mousePosRTCenter.normalized);
     }
@@ -117,6 +118,9 @@ public class Cube : Entity
             cubeState = CubeState.Idle;
             prePos = transform.position;
             MouseController.Instance.MouseClick_1();
+
+            transform.Find("FlyCol").gameObject.SetActive(false);
+
         }
     }
 
@@ -126,6 +130,19 @@ public class Cube : Entity
         {
             cubeState = CubeState.Idle;
             transform.position = prePos;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            cubeState = CubeState.Idle;
+            prePos = transform.position;
+            MouseController.Instance.MouseClick_1();
+
+            transform.Find("FlyCol").gameObject.SetActive(false);
+
         }
     }
 }

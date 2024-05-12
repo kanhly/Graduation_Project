@@ -6,6 +6,7 @@ public class UIController : MonoSingleton<UIController>
 {
     public ViewPlayerInfo viewPlayerInfo;
     public MiniMap miniMap;
+    public GameObject startPanel;
 
     void Start()
     {
@@ -23,5 +24,17 @@ public class UIController : MonoSingleton<UIController>
     public void SetMiniMap(bool flag)
     {
         miniMap.gameObject.SetActive(flag);
+    }
+
+    public void SetPlayerInfo(bool flag)
+    {
+        viewPlayerInfo.gameObject.SetActive(flag);
+    }
+
+    public void SetStartPanel(bool flag)
+    {
+        startPanel.SetActive(flag);
+        SetPlayerInfo(true);
+        GameManager.Instance.StartGame();
     }
 }

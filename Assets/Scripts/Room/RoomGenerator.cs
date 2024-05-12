@@ -8,9 +8,9 @@ using UnityEngine.Tilemaps;
 public enum Direction { Up, Down, Left, Right };
 
 [System.Serializable]
-public class Barrior
+public class Level
 {
-    public GameObject barrior;
+    public GameObject level;
     public float weight;
 }
 
@@ -39,8 +39,8 @@ public class RoomGenerator : MonoBehaviour
     private Dictionary<Vector3, List<Vector3>> adjList = new Dictionary<Vector3, List<Vector3>>();
     private List<Vector3> longestPath = new List<Vector3>();
 
-    [Header("ÕÏ°­Îï")]
-    public List<Barrior> barriors = new List<Barrior>();
+    [Header("¹Ø¿¨")]
+    public List<Level> levels = new List<Level>();
     List<int> weightPoul = new List<int>();
     public int baseNum = 100;
 
@@ -110,33 +110,6 @@ public class RoomGenerator : MonoBehaviour
         adjList[dest].Add(src);
     }
 
-    //public void FindLongPath()
-    //{
-    //    HashSet<Vector3> visited = new HashSet<Vector3>();
-
-    //    foreach(var node in adjList.Keys)
-    //    {
-    //        List<Vector3> currentPath = new List<Vector3>();
-    //        DFS(node, visited, currentPath);
-    //    }
-    //}
-
-    //public void DFS(Vector3 node,HashSet<Vector3> visited,List<Vector3> currentPath)
-    //{
-    //    visited.Add(node);
-    //    currentPath.Add(node);
-
-    //    if (currentPath.Count > longestPath.Count)
-    //        longestPath = new List<Vector3>(currentPath);
-
-    //    foreach(var neighbor in adjList[node])
-    //    {
-    //        if (!visited.Contains(neighbor))
-    //        {
-    //            DFS(neighbor, new HashSet<Vector3>(visited), new List<Vector3>(currentPath));
-    //        }
-    //    }
-    //}
 
     public Vector3 BFS(Vector3 start)
     {
@@ -247,7 +220,7 @@ public class RoomGenerator : MonoBehaviour
             if (rightRoom) rightRoom.doors.Add(door);
         }
 
-        GenerateBarrior(wallBase);
+        newRoom.lc= GenerateLevel(newRoom).GetComponent<LevelController>();
     }
 
     public Room FindRoom(Vector3 pos)
@@ -263,14 +236,14 @@ public class RoomGenerator : MonoBehaviour
     public void SetWeightPoul()
     {
         float totalWeight = 0;
-        foreach (var barrior in barriors)
+        foreach (var level in levels)
         {
-            totalWeight += barrior.weight;
+            totalWeight += level.weight;
         }
 
-        for(int i = 0; i < barriors.Count; i++)
+        for(int i = 0; i < levels.Count; i++)
         {
-            int count = (int)Mathf.Round(barriors[i].weight / totalWeight * baseNum);
+            int count = (int)Mathf.Round(levels[i].weight / totalWeight * baseNum);
             for(int j = 0; j < count; j++)
             {
                 weightPoul.Add(i);
@@ -278,16 +251,18 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    public void GenerateBarrior(Wall wall)
+    public GameObject GenerateLevel(Room room)
     {
         int ran = Random.Range(0, weightPoul.Count);
 
         int index = weightPoul[ran];
 
-        if (barriors[index].barrior!=null)
+        if (levels[index].level!=null)
         {
-            GameObject go = Instantiate(barriors[index].barrior,wall.transform);
+            GameObject go = Instantiate(levels[index].level,room.transform);
+            return go;
         }
+        return null;
     }
 
     //public void SetupEndRoom(Room endRoom, Vector3 roomPosition)

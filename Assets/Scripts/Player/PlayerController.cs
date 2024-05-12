@@ -48,7 +48,10 @@ public class PlayerController : MonoBehaviour
         ConnectLine();
 
         if (isDead)
+        {
+            movement = Vector2.zero;
             return;
+        }
 
         CheckInput();
 
@@ -121,8 +124,8 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        anim.SetTrigger("Die");
         isDead = true;
+        anim.SetTrigger("Die");
     }
 
     public void ConnectLine()
@@ -159,4 +162,14 @@ public class PlayerController : MonoBehaviour
         lr.startColor = color;
         lr.endColor = color;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            UIController.Instance.OnTakeDamage(1);
+        }
+    }
+
+
 }

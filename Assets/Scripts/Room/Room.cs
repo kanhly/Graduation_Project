@@ -11,6 +11,13 @@ public class Room : MonoBehaviour
 
     public List<Door> doors = new List<Door>();
 
+    public LevelController lc;
+
+    private void Start()
+    {
+        lc.register += SetFinish;
+    }
+
     private void Update()
     {
         ////≤‚ ‘”√
@@ -21,6 +28,11 @@ public class Room : MonoBehaviour
         //        door.ChangeDoorState();
         //    }
         //}
+    }
+
+    public void SetFinish()
+    {
+        isFinish = true;
     }
 
     public void OpenDoors()
@@ -43,6 +55,7 @@ public class Room : MonoBehaviour
     {
         if (collision.CompareTag("Player") && collision.isTrigger == false)
         {
+            lc.gameObject.SetActive(true);
             CameraController.Instance.ChangeTarget(transform);
             RoomManager.Instance.curRoom = this;
         }

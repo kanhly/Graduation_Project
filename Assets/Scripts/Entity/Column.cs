@@ -33,12 +33,12 @@ public class Column : Entity
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Lasing"))
-        {
-            crystal.isFire = false;
-            Debug.Log("exit");
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Lasing"))
+    //    {
+    //        crystal.isFire = false;
+    //        Debug.Log("exit");
+    //    }
+    //}
 }

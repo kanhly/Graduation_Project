@@ -78,7 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2468865048670313367}
   - component: {fileID: 7618096538667064520}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_L_X
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -247,7 +247,8 @@ GameObject:
   - component: {fileID: 6962514984894926097}
   - component: {fileID: 3551879869308860275}
   - component: {fileID: 8061286010679187652}
-  m_Layer: 0
+  - component: {fileID: 8604936105213581600}
+  m_Layer: 7
   m_Name: Door_UD
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -353,6 +354,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &8604936105213581600
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987040312519548762}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.000000059604645, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.4965038, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2716557698016662627
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8680735705318284270}
   - component: {fileID: 7607700703768597630}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_R_X
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -651,7 +678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6189835187367739464}
   - component: {fileID: 8851903532421940332}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_L_Y
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -736,7 +763,7 @@ GameObject:
   - component: {fileID: 2267931382666977170}
   - component: {fileID: 6580077921003630189}
   - component: {fileID: 3455849933764067672}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_Part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2692,7 +2719,7 @@ GameObject:
   - component: {fileID: 244619556883542932}
   - component: {fileID: 7744015239353864142}
   - component: {fileID: 9189746269689758290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_Part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3089,7 +3116,8 @@ GameObject:
   - component: {fileID: 1859223611741138723}
   - component: {fileID: 3403736788936770799}
   - component: {fileID: 7890791989261982947}
-  m_Layer: 0
+  - component: {fileID: 31574761381658324}
+  m_Layer: 7
   m_Name: Door_LR
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3195,6 +3223,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &31574761381658324
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8597007713708036286}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.009422302, y: 0.16960108}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7173319, y: 2.997524}
+  m_EdgeRadius: 0
 --- !u!1 &8912206599788111571
 GameObject:
   m_ObjectHideFlags: 0
@@ -3235,7 +3289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3810292860293145470}
   - component: {fileID: 6819909568631170749}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_R_Y
   m_TagString: Wall
   m_Icon: {fileID: 0}

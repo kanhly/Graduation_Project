@@ -7,6 +7,8 @@ TagManager:
   - Wall
   - Lasing
   - Cube_Static
+  - Cube
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Player
   - Room
   - Cube
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -61,4 +63,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 4250941897
+    locked: 0
+  - name: Enemy
+    uniqueID: 8504511
     locked: 0

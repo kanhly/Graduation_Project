@@ -13,7 +13,7 @@ public class RoomManager : MonoSingleton<RoomManager>
             curRoom.CloseDoors();
         }
 
-        if (Input.GetKeyDown(KeyCode.R)&&curRoom!=null&&curRoom.isFinish!=true)
+        if (curRoom!=null&&curRoom.isFinish==true)
         {
             curRoom.isFinish = true;
             curRoom.OpenDoors();

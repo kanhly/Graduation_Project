@@ -392,6 +392,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 1408
+  isColumn: 1
 --- !u!1 &2661154296055962470
 GameObject:
   m_ObjectHideFlags: 0

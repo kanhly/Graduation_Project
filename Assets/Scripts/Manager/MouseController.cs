@@ -13,7 +13,7 @@ public class MouseController : MonoSingleton<MouseController>
     public int layerMask;
 
     public RectTransform virtualCursor;
-    public float radius = 2f;
+    public float radius=1f;
     public bool isConnect = false;
     bool isConStatic = false;
     public float sensitivity = 15f; // 移动灵敏度
@@ -25,7 +25,7 @@ public class MouseController : MonoSingleton<MouseController>
     RaycastHit2D hit;
     public Entity go;
     Entity currentGo;
-    bool isCoroRun;
+    public bool isCoroRun;
 
     //限制物品移动
     Vector2 prePcPos;
@@ -36,20 +36,43 @@ public class MouseController : MonoSingleton<MouseController>
     {
         layerMask = LayerMask.GetMask("Cube","Default");
 
-        // 锁定光标到屏幕中心
-        Cursor.lockState = CursorLockMode.Locked;
-        // 隐藏系统光标
-        Cursor.visible = false;
+        SetRealCursor(true);
 
-        prePcPos = pc.transform.position;
+        if(pc!=null)
+            prePcPos = pc.transform.position;
         isCoroRun = false;
 
         //待修改
         virtualCursor = (RectTransform)UIController.Instance.gameObject.transform.Find("Cursor");
     }
 
+    public void SetRealCursor(bool islock)
+    {
+        if (islock)
+        {
+            // 锁定光标到屏幕中心
+            Cursor.lockState = CursorLockMode.Locked;
+            // 隐藏系统光标
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
     void Update()
     {
+        //修bug
+        if (pc == null)
+            pc = FindObjectOfType<PlayerController>();
+        if (cursor_game == null)
+            cursor_game = GameObject.Find("Cursor_Game");
+        if(virtualCursor==null)
+            virtualCursor = (RectTransform)GameObject.Find("Cursor").transform;
+
+
         mousePos2D = Camera.main.ScreenToWorldPoint(
             new Vector3(virtualCursor.position.x, virtualCursor.position.y, Camera.main.nearClipPlane));
 
@@ -65,6 +88,7 @@ public class MouseController : MonoSingleton<MouseController>
         }
         else
         {
+            //Debug.Log(isCoroRun);
             if(!isCoroRun)
                 StartCoroutine(CheckHit());
         }
@@ -132,6 +156,9 @@ public class MouseController : MonoSingleton<MouseController>
     public void SetCursorVisible(bool flag)
     {
         virtualCursor.GetComponent<Image>().enabled = flag;
+        if(cursor_game!=null)
+            cursor_game.GetComponent<SpriteRenderer>().enabled = flag;
+
     }
 
     public void SetCursorPos()
@@ -149,7 +176,9 @@ public class MouseController : MonoSingleton<MouseController>
         virtualCursor.position = new Vector2(newX, newY);
 
         Vector2 cursorPos= Camera.main.ScreenToWorldPoint(virtualCursor.position);
-        cursor_game.transform.position = cursorPos;
+
+        if(GameManager.Instance.ReturnSceneName().Equals("GameScene"))
+            cursor_game.transform.position = cursorPos;
 
         //cursor_game.GetComponent<Rigidbody2D>().MovePosition(Camera.main.ScreenToWorldPoint(virtualCursor.position));
 
@@ -163,7 +192,7 @@ public class MouseController : MonoSingleton<MouseController>
     public void ConStaticEntity()
     {
         SetCursorVisible(false);
-        if (!pc.isOnRange)
+        if (!pc.isOnRange&&pc!=null)
         {
             MouseClick_1();
         }
@@ -173,6 +202,7 @@ public class MouseController : MonoSingleton<MouseController>
     {
         if (go != null && pc.isOnRange)
         {
+            AudioManager.Instance.PlayConClip();
             if (go.CompareTag("Cube_Static"))
             {
                 isConStatic = true;
@@ -215,7 +245,7 @@ public class MouseController : MonoSingleton<MouseController>
     {
         isCoroRun = true;
 
-        if (go!=null)
+        if (go != null&&pc != null)
         {
             //当检测到相应物品时，从角色位置发射一条射线到物品上，如果检测到物品不相同则说明途中有障碍物阻挡，将targetGO赋空
             LayerMask pcRayLayerMask = LayerMask.GetMask("Cube", "Wall");

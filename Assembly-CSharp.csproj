@@ -55,17 +55,17 @@
   <ItemGroup>
     <Compile Include="Assets\Arts\Cainos\Pixel Art Top Down - Basic\Script\TopDownCharacterController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Debug\PatrolDataEditor.cs" />
     <Compile Include="Assets\Scripts\Room\Room.cs" />
     <Compile Include="Assets\Scripts\Room\Door.cs" />
-    <Compile Include="Assets\Scripts\Debug\EnemyPatrol.cs" />
     <Compile Include="Assets\Scripts\Manager\Cursor_Game.cs" />
     <Compile Include="Assets\Scripts\Entity\Crystal.cs" />
     <Compile Include="Assets\Scripts\Manager\UIController.cs" />
+    <Compile Include="Assets\Scripts\UI\UISettingPanel.cs" />
     <Compile Include="Assets\Scripts\Entity\Column.cs" />
     <Compile Include="Assets\Scripts\Room\LevelController.cs" />
     <Compile Include="Assets\Scripts\Manager\MouseController.cs" />
     <Compile Include="Assets\Arts\Cainos\Pixel Art Top Down - Basic\Script\PropsAltar.cs" />
+    <Compile Include="Assets\Scripts\UI\UIEndPanel.cs" />
     <Compile Include="Assets\Scripts\UI\ViewPlayerInfo.cs" />
     <Compile Include="Assets\Scripts\Manager\SpeechRecognition.cs" />
     <Compile Include="Assets\Arts\Cainos\Pixel Art Top Down - Basic\Script\SpriteColorAnimation.cs" />
@@ -75,7 +75,6 @@
     <Compile Include="Assets\Scripts\Player\PlayerModel.cs" />
     <Compile Include="Assets\Scripts\UI\MiniMap.cs" />
     <Compile Include="Assets\Scripts\Manager\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Debug\PatrolData.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerRecRange.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EagleRec.cs" />

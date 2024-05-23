@@ -183,6 +183,7 @@ public class RoomGenerator : MonoBehaviour
         newRoom.roomLeft = rPoints.Contains(roomPosition + new Vector3(-xOffset, 0, 0));
 
         Wall wallBase=Instantiate(wall, roomPosition, Quaternion.identity).GetComponent<Wall>();
+        newRoom.wall = wallBase;
         wallBase.transform.SetParent(newRoom.transform);
         //»æÖÆÇ½±Ú
         if (newRoom.roomUp != true)

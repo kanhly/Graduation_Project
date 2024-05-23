@@ -6,6 +6,7 @@ public class Column : Entity
 {
     Animator anim;
     public Crystal crystal;
+    bool isHitByCrystal = false;
 
     private void Start()
     {
@@ -15,6 +16,7 @@ public class Column : Entity
 
     public override void Rotate()
     {
+        AudioManager.Instance.PlayColumnRotate();
         anim.SetTrigger("Rotate");
     }
 
@@ -29,16 +31,31 @@ public class Column : Entity
         {
             crystal.isFire = true;
             Debug.Log("enter");
-
+            if (collision.transform.parent.name.Equals("Crystal"))
+                isHitByCrystal = true;
         }
     }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Lasing"))
-    //    {
-    //        crystal.isFire = false;
-    //        Debug.Log("exit");
-    //    }
-    //}
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Lasing"))
+        {
+            crystal.isFire = true;
+            if (collision.transform.parent.name.Equals("Crystal"))
+                isHitByCrystal = true;
+        }
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Lasing")&&collision.transform.parent.name.Equals("Crystal"))
+            isHitByCrystal = false;
+
+        if (collision.CompareTag("Lasing") && !isHitByCrystal)
+        {
+            crystal.isFire = false;
+            Debug.Log("exit");
+        }
+    }
 }

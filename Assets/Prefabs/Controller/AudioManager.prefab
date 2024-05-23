@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7192265785638956595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7192265785638956593}
+  - component: {fileID: 7192265785638956594}
+  - component: {fileID: 1726280137}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7192265785638956593
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192265785638956595}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1264.6613, y: 737.8257, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7192265785638956594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192265785638956595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd08d09d5fd97a438556ebd836775df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickClip: {fileID: 8300000, guid: b21167347052e4a4ba0a2e2adc7fc07e, type: 3}
+  doorClip: {fileID: 8300000, guid: 20acdae6c87b3e4458c813f8eead737c, type: 3}
+  enemyDie: {fileID: 8300000, guid: e213f1abe8c2bc449a90be08507b19f6, type: 3}
+  columnRotate: {fileID: 8300000, guid: 90af07c4598e08243af00fd693200ba7, type: 3}
+  crystalOn: {fileID: 8300000, guid: ed4362abd3bf1eb4fa04701de7e6ef4d, type: 3}
+  conClip: {fileID: 8300000, guid: 15004dc56195a1443a5ff86164b3f446, type: 3}
+  playerMove: {fileID: 8300000, guid: a036ccb09bd77d84e8dc1078b53d311e, type: 3}
+  playerHurt: {fileID: 8300000, guid: cf997b2fe7df3a242b43da579da09f25, type: 3}
+  failClip: {fileID: 8300000, guid: f7fef5d98cd475b47bf59bc53f37f05f, type: 3}
+  bgmClip: {fileID: 8300000, guid: 1555836638cd34283a3780a19b58d4c6, type: 3}
+--- !u!81 &1726280137
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192265785638956595}
+  m_Enabled: 1

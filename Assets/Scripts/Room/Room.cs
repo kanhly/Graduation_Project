@@ -13,6 +13,8 @@ public class Room : MonoBehaviour
 
     public LevelController lc;
 
+    public Wall wall;
+
     private void Start()
     {
         lc.register += SetFinish;
@@ -58,8 +60,10 @@ public class Room : MonoBehaviour
             lc.gameObject.SetActive(true);
             CameraController.Instance.ChangeTarget(transform);
             RoomManager.Instance.curRoom = this;
+            wall.transform.Find("WallBase").gameObject.SetActive(true);
         }
     }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -68,7 +72,15 @@ public class Room : MonoBehaviour
             CameraController.Instance.ChangeTarget(transform);
 
             RoomManager.Instance.curRoom = this;
+            wall.transform.Find("WallBase").gameObject.SetActive(true);
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && collision.isTrigger == false)
+        {
+            lc.gameObject.SetActive(false);      
         }
     }
 }

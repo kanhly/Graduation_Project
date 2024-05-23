@@ -19,11 +19,23 @@ public class Crystal : MonoBehaviour
     bool isCoroRun=false;
     Vector2 PrePos;
     Vector2 bulletPrePos;
+    [SerializeField]bool isColumn;
+
+    private void Awake()
+    {
+        Invoke("SetFire", 1f);
+    }
 
     private void Start()
     {
-        isFire = true;
+        
         bulletPrePos = bullet.transform.position;
+    }
+
+    public void SetFire()
+    {
+        if(!isColumn)
+            isFire = true;
     }
 
     private void Update()

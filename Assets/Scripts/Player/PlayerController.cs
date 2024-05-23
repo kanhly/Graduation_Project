@@ -6,7 +6,8 @@ public enum State
 {
     Idle,
     Run,
-    Die
+    Die,
+    Hurt
 }
 
 public class PlayerController : MonoBehaviour
@@ -33,6 +34,9 @@ public class PlayerController : MonoBehaviour
     public Vector2 movement;
     float moveX;
     float moveY;
+
+    float footStepInterv = 0.2f;
+    float footStepTimer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -66,11 +70,27 @@ public class PlayerController : MonoBehaviour
             case State.Die:
                 Die();
                 break;
+            //case State.Hurt:
+            //    Hurt();
+            //    break;
         }
 
         //≤‚ ‘”√
         if (Input.GetKeyDown(KeyCode.Q))
             UIController.Instance.OnTakeDamage(1);
+    }
+
+    public void Hurt()
+    {
+        UIController.Instance.OnTakeDamage(1);
+        AudioManager.Instance.PlayPlayerHurt();
+        anim.SetTrigger("Hurt");
+        Invoke("EnterIdle", 0.25f);
+    }
+
+    public void EnterIdle()
+    {
+        currentState = State.Idle;
     }
 
     private void FixedUpdate()
@@ -101,15 +121,15 @@ public class PlayerController : MonoBehaviour
             currentState = State.Die;
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            UIController.Instance.SetMiniMap(true);
-        }
-        if (Input.GetKeyUp(KeyCode.Tab))
-        {
-            UIController.Instance.SetMiniMap(false);
+        //if (Input.GetKeyDown(KeyCode.Tab))
+        //{
+        //    UIController.Instance.SetMiniMap(true);
+        //}
+        //if (Input.GetKeyUp(KeyCode.Tab))
+        //{
+        //    UIController.Instance.SetMiniMap(false);
 
-        }
+        //}
     }
 
     public void Idle()
@@ -119,13 +139,37 @@ public class PlayerController : MonoBehaviour
 
     public void Run()
     {
+        footStepTimer -= Time.deltaTime;
+        if (footStepTimer <=0)
+        {
+            PlayMoveAudio();
+            footStepTimer = footStepInterv;
+        }
+
         anim.SetFloat("Speed", movement.sqrMagnitude);
+    }
+
+    public void PlayMoveAudio()
+    {
+        AudioManager.PlayPlayerMove();
     }
 
     public void Die()
     {
+        AudioManager.Instance.PlayFailClip();
         isDead = true;
         anim.SetTrigger("Die");
+        Invoke("EnterEndScene", 3f);
+    }
+
+    public void EnterEndScene()
+    {
+        GameManager.Instance.EndScene();
+        UIController.Instance.SetPlayerInfo(false);
+        UIController.Instance.SetMiniMap(false);
+        UIController.Instance.SetEndTitle(false);
+        UIController.Instance.SetEndPanel(true);
+        MouseController.Instance.SetRealCursor(false);
     }
 
     public void ConnectLine()
@@ -168,6 +212,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             UIController.Instance.OnTakeDamage(1);
+            AudioManager.Instance.PlayPlayerHurt();
+
+            //currentState = State.Hurt;
+            //Hurt();
         }
     }
 

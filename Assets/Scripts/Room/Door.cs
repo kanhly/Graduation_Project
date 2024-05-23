@@ -24,6 +24,8 @@ public class Door : MonoBehaviour
         {
             anim.Play(openClip.name);
             isOpen = true;
+            AudioManager.PlayDoorClip();
+
         }
     }
 
@@ -33,6 +35,7 @@ public class Door : MonoBehaviour
         {
             anim.Play(closeClip.name);
             isOpen = false;
+            AudioManager.PlayDoorClip();
         }
     }
 

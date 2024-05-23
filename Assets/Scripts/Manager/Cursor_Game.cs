@@ -6,6 +6,11 @@ public class Cursor_Game : MonoBehaviour
 {
     Entity go;
 
+    private void Awake()
+    {
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.TryGetComponent<Entity>(out go))

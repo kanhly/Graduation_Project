@@ -19,7 +19,7 @@ public class Crystal_Target : MonoBehaviour
         if (collision.CompareTag("Lasing")&&!isHit)
         {
         Debug.Log("lasing.");
-
+            AudioManager.Instance.PlayCrystalOn();
             isHit = true;
             anim.Play("Target_ChangeColor");
         }
@@ -30,6 +30,7 @@ public class Crystal_Target : MonoBehaviour
         if (collision.CompareTag("Lasing") && !isHit)
         {
             Debug.Log("lasing.");
+            AudioManager.Instance.PlayCrystalOn();
 
             isHit = true;
             anim.Play("Target_ChangeColor");
